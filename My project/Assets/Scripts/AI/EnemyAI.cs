@@ -11,7 +11,7 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent Agent; //Navmesh agent refers to the "Navmesh agent" that is on the actual enemy itself.
     public Transform PlayerTarget; //The Player which the "guard" is looking for.
     [Header("Patrol Settings")]
-    public Transform[] waypoints; // A list of points to visit
+    public Transform[] Waypoints; // A list of points to visit
     private int CurrentWaypointIndex = 0; // Which point are we going to?
     public float WaitTimer = 0f; //How long our guard is going to wait at each waypoint.
     public float LostPlayerDelay = 2f;
@@ -26,9 +26,9 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         if (Agent == null) Agent = GetComponent<NavMeshAgent>();
-        if (waypoints.Length > 0) //Starts the "guard" moving towards the first waypoint.
+        if (Waypoints.Length > 0) //Starts the "guard" moving towards the first waypoint.
         {
-            Agent.SetDestination(waypoints[0].position);
+            Agent.SetDestination(Waypoints[0].position);
         }
     }
     void Update()
@@ -48,7 +48,7 @@ public class EnemyAI : MonoBehaviour
     }
     void PatrolLogic()
     {
-        if (waypoints.Length == 0) return; //No waypoints, no patrol.
+        if (Waypoints.Length == 0) return; //No waypoints, no patrol.
 
         //Checking if the guard has reached their current waypoint.
         if (!Agent.pathPending && Agent.remainingDistance < 0.5f)
@@ -58,8 +58,8 @@ public class EnemyAI : MonoBehaviour
 
             if (WaitTimer > 2f)
             {
-                CurrentWaypointIndex = (CurrentWaypointIndex + 1) % waypoints.Length;
-                Agent.SetDestination(waypoints[CurrentWaypointIndex].position);
+                CurrentWaypointIndex = (CurrentWaypointIndex + 1) % Waypoints.Length;
+                Agent.SetDestination(Waypoints[CurrentWaypointIndex].position);
                 WaitTimer = 0f;
             }
         }
@@ -92,7 +92,7 @@ public class EnemyAI : MonoBehaviour
             {
                 CurrentState = State.Patrol;
                 LostPlayerTimer = 0f;
-                Agent.SetDestination(waypoints[CurrentWaypointIndex].position);
+                Agent.SetDestination(Waypoints[CurrentWaypointIndex].position);
             }
         }
         else
@@ -146,5 +146,18 @@ public class EnemyAI : MonoBehaviour
         }
         return false; // Player is not seen.
     }
+    public void ResetGuard() //Whole point of this function is to reset the guard.
+    {
+        CurrentState = State.Patrol;
+        LostPlayerTimer = 0f;
+        WaitTimer = 0f; 
 
+        CurrentWaypointIndex = 0;
+
+        if(Waypoints.Length > 0)
+        {
+            transform.position = Waypoints[0].position;
+            Agent.SetDestination(Waypoints[0].position);
+        }
+    }
 }
