@@ -1931,6 +1931,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2706583007165900871, guid: 83f24ce19c23f8b41af2af51ec5c1f8e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2809963489388010001, guid: 83f24ce19c23f8b41af2af51ec5c1f8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.2867825
@@ -1986,6 +1990,10 @@ PrefabInstance:
     - target: {fileID: 9018634979305437488, guid: 83f24ce19c23f8b41af2af51ec5c1f8e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9018634979305437488, guid: 83f24ce19c23f8b41af2af51ec5c1f8e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4257,22 +4265,22 @@ MonoBehaviour:
   CurrentState: 0
   Agent: {fileID: 1133307874}
   PlayerTarget: {fileID: 380760804}
-  waypoints:
+  Waypoints:
   - {fileID: 289017827}
   - {fileID: 1501935065}
   - {fileID: 605796685}
   - {fileID: 556598782}
-  WaitTimer: 2
+  WaitTimer: 0
   LostPlayerDelay: 2
   LostPlayerTimer: 0
   DetectionRange: 10
   ViewAngle: 90
   ObstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   PlayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &1233123658
 GameObject:
   m_ObjectHideFlags: 0

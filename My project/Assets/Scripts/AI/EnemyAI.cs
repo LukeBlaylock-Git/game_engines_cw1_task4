@@ -85,7 +85,7 @@ public class EnemyAI : MonoBehaviour
         float Dist = Vector3.Distance(transform.position, PlayerTarget.position);
 
 
-        if (Dist > DetectionRange || !CanSeePlayer()) // Checking if the player is out of range or we can no longer see them.
+        if (Dist > DetectionRange && !CanSeePlayer()) // Checking if the player is out of range or we can no longer see them.
         {
             LostPlayerTimer += Time.deltaTime; //Starting the count when the player is out of view
             if (LostPlayerTimer >= LostPlayerDelay) //If the timer is less than or equal to LostPlayerDelay, return to patrol.
@@ -146,7 +146,7 @@ public class EnemyAI : MonoBehaviour
         }
         return false; // Player is not seen.
     }
-    public void ResetGuard() //Whole point of this function is to reset the guard.
+    public void ResetGuard() //Whole point of this function is to reset the guard, called upon by the tools.
     {
         CurrentState = State.Patrol;
         LostPlayerTimer = 0f;
