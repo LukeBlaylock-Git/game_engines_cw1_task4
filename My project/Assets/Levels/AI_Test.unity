@@ -4271,7 +4271,7 @@ MonoBehaviour:
   - {fileID: 605796685}
   - {fileID: 556598782}
   WaitTimer: 0
-  LostPlayerDelay: 2
+  LostPlayerDelay: 0.5
   LostPlayerTimer: 0
   DetectionRange: 10
   ViewAngle: 90
